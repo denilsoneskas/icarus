@@ -14,8 +14,13 @@ public class CidadeRowMapper implements RowMapper<Cidade> {
 
 		Cidade cidade = new Cidade();
 		cidade.setId(rs.getLong("id"));
-		cidade.setNome(rs.getString("nome"));
-		cidade.setCep(rs.getString("cep"));
+		
+		try {
+			cidade.setNome(rs.getString("cidade_nome"));
+		} catch (Exception e) {
+			cidade.setNome(rs.getString("nome"));
+		}
+		
 		cidade.setEstado(rs.getString("estado"));
 
 		return cidade;

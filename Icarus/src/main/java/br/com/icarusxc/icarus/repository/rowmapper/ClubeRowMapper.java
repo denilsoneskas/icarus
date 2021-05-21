@@ -14,15 +14,15 @@ public class ClubeRowMapper implements RowMapper<Clube> {
 
 		Clube clube = new Clube();
 		clube.setId(rs.getLong("id"));
-		clube.setNome(rs.getString("nome"));
-		clube.setLogradouro(rs.getString("logradouro"));
-		clube.setNumero(rs.getInt("numero"));
-		clube.setReferencia(rs.getString("referencia"));
-		clube.setComplemento(rs.getString("complemento"));
-		clube.setBairro(rs.getString("bairro"));
-		
-		clube.setCidade(new CidadeRowMapper().mapRow(rs, rowNum));
 
+		try {
+			clube.setNome(rs.getString("clube_nome"));
+		} catch (Exception e) {
+			clube.setNome(rs.getString("nome"));
+		}
+		
+		clube.setEndereco(new EnderecoRowMapper().mapRow(rs, rowNum));
+		
 		return clube;
 	}
 

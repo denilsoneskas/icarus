@@ -14,7 +14,13 @@ public class FabricanteRowMapper implements RowMapper<Fabricante> {
 
 		Fabricante fabricante = new Fabricante();
 		fabricante.setId(rs.getLong("id"));
-		fabricante.setNome(rs.getString("nome"));
+		
+		try {
+			fabricante.setNome(rs.getString("fabricante_nome"));
+		} catch (Exception e) {
+			fabricante.setNome(rs.getString("nome"));
+		}
+		
 
 		return fabricante;
 	}

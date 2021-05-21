@@ -10,7 +10,7 @@ import br.com.icarusxc.icarus.entity.Piloto;
 public class PilotoBuilder {
 
 	@Autowired
-	private CidadeService cidadeService;
+	private EnderecoService enderecoService;
 	
 	@Autowired
 	private AeronaveService aeronaveService;
@@ -22,13 +22,8 @@ public class PilotoBuilder {
 		Piloto piloto = new Piloto();
 		piloto.setNome(dto.getNome());
 		piloto.setDataNascimento(dto.getDataNascimento());
-		piloto.setLogradouro(dto.getLogradouro());
-		piloto.setNumero(dto.getNumero());
-		piloto.setReferencia(dto.getReferencia());
-		piloto.setComplemento(dto.getComplemento());
-		piloto.setBairro(dto.getBairro());
 
-		cidadeService.ler(dto.getCidade()).ifPresent(piloto::setCidade);
+		enderecoService.ler(dto.getEndereco()).ifPresent(piloto::setEndereco);
 		aeronaveService.ler(dto.getAeronave()).ifPresent(piloto::setAeronave);
 		clubeService.ler(dto.getClube()).ifPresent(piloto::setClube);
 
@@ -39,13 +34,8 @@ public class PilotoBuilder {
 		Piloto piloto = new Piloto();
 		piloto.setNome(dto.getNome());
 		piloto.setDataNascimento(dto.getDataNascimento());
-		piloto.setLogradouro(dto.getLogradouro());
-		piloto.setNumero(dto.getNumero());
-		piloto.setReferencia(dto.getReferencia());
-		piloto.setComplemento(dto.getComplemento());
-		piloto.setBairro(dto.getBairro());
 		
-		cidadeService.ler(dto.getCidade()).ifPresent(piloto::setCidade);
+		enderecoService.ler(dto.getEndereco()).ifPresent(piloto::setEndereco);
 		aeronaveService.ler(dto.getAeronave()).ifPresent(piloto::setAeronave);
 		clubeService.ler(dto.getClube()).ifPresent(piloto::setClube);
 		

@@ -24,10 +24,9 @@ public class CidadeRepository implements BaseRepository<Cidade> {
 	@Override
 	public Cidade criar(Cidade cidade) {
 
-		String sql = "INSERT INTO cidade (nome, cep, estado) VALUES (:nome, :cep, :estado) RETURNING *";
+		String sql = "INSERT INTO cidade (nome, estado) VALUES (:nome, :estado) RETURNING *";
 		SqlParameterSource paramSource = new MapSqlParameterSource()
 				.addValue("nome", cidade.getNome())
-				.addValue("cep", cidade.getCep())
 				.addValue("estado", cidade.getEstado());
 
 		return template.queryForObject(sql, paramSource, new CidadeRowMapper());
@@ -57,10 +56,9 @@ public class CidadeRepository implements BaseRepository<Cidade> {
 	@Override
 	public void atualizar(Cidade cidade) {
 
-		String sql = "UPDATE cidade SET nome = :nome, cep = :cep, estado = :estado WHERE id = :id";
+		String sql = "UPDATE cidade SET nome = :nome, estado = :estado WHERE id = :id";
 		SqlParameterSource paramSource = new MapSqlParameterSource()
 				.addValue("nome", cidade.getNome())
-				.addValue("cep", cidade.getCep())
 				.addValue("estado", cidade.getEstado())
 				.addValue("id",	cidade.getId());
 

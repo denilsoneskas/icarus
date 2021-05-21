@@ -10,17 +10,7 @@ public class PilotoDto extends BaseDto {
 	
 	private Date dataNascimento;
 	
-	private String logradouro;
-
-	private int numero;
-
-	private String referencia;
-
-	private String complemento;
-
-	private String bairro;
-
-	private Long cidade;
+	private Long endereco;
 	
 	private Long aeronave;
 	
@@ -50,52 +40,12 @@ public class PilotoDto extends BaseDto {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public String getLogradouro() {
-		return logradouro;
+	public Long getEndereco() {
+		return endereco;
 	}
 
-	public void setLogradouro(String logradouro) {
-		this.logradouro = logradouro;
-	}
-
-	public int getNumero() {
-		return numero;
-	}
-
-	public void setNumero(int numero) {
-		this.numero = numero;
-	}
-
-	public String getReferencia() {
-		return referencia;
-	}
-
-	public void setReferencia(String referencia) {
-		this.referencia = referencia;
-	}
-
-	public String getComplemento() {
-		return complemento;
-	}
-
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
-	}
-
-	public String getBairro() {
-		return bairro;
-	}
-
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
-
-	public Long getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(Long cidade) {
-		this.cidade = cidade;
+	public void setEndereco(Long endereco) {
+		this.endereco = endereco;
 	}
 
 	public Long getAeronave() {
@@ -113,6 +63,5 @@ public class PilotoDto extends BaseDto {
 	public void setClube(Long clube) {
 		this.clube = clube;
 	}
-
 	
 }

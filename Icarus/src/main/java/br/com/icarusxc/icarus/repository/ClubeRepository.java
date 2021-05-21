@@ -24,15 +24,10 @@ public class ClubeRepository implements BaseRepository<Clube> {
 	@Override
 	public Clube criar(Clube clube) {
 
-		String sql = "INSERT INTO clube (nome, logradouro, numero, referencia, complemento, bairro, cidade_id) VALUES (:nome, :logradouro, :numero, :referencia, :complemento, :bairro, :cidade_id) RETURNING id";
+		String sql = "INSERT INTO clube (nome, endereco_id) VALUES (:nome, :endereco_id) RETURNING id";
 		SqlParameterSource paramSource = new MapSqlParameterSource()
 				.addValue("nome", clube.getNome())
-				.addValue("logradouro", clube.getLogradouro())
-				.addValue("numero", clube.getNumero())
-				.addValue("referencia", clube.getReferencia())
-				.addValue("complemento", clube.getComplemento())
-				.addValue("bairro", clube.getBairro())
-				.addValue("cidade_id", clube.getCidade().getId());
+				.addValue("endereco_id", clube.getEndereco().getId());
 		
 		clube.setId(template.queryForObject(sql, paramSource, Long.class));
 		return clube;
@@ -41,7 +36,10 @@ public class ClubeRepository implements BaseRepository<Clube> {
 	@Override
 	public Optional<Clube> ler(Long id) {
 
-		String sql = "SELECT * FROM clube JOIN cidade ON cidade_id = cidade.id WHERE clube.id = :id";
+		String sql = "SELECT *, cidade.nome AS cidade_nome FROM clube"
+				+ " JOIN endereco ON endereco_id = endereco.id"
+				+ " JOIN cidade ON endereco.cidade_id = cidade.id"
+				+ " WHERE clube.id = :id";
 		SqlParameterSource paramSource = new MapSqlParameterSource()
 				.addValue("id", id);
 
@@ -55,7 +53,10 @@ public class ClubeRepository implements BaseRepository<Clube> {
 	@Override
 	public List<Clube> lerTudo() {
 
-		String sql = "SELECT * FROM clube JOIN cidade ON cidade_id = cidade.id ORDER BY clube.id";
+		String sql = "SELECT *, cidade.nome AS cidade_nome FROM clube"
+				+ " JOIN endereco ON endereco_id = endereco.id"
+				+ " JOIN cidade ON endereco.cidade_id = cidade.id"
+				+ " ORDER BY clube.id";
 
 		return template.query(sql, new ClubeRowMapper());
 	}
@@ -63,15 +64,10 @@ public class ClubeRepository implements BaseRepository<Clube> {
 	@Override
 	public void atualizar(Clube clube) {
 
-		String sql = "UPDATE clube SET nome = :nome, logradouro = :logradouro, numero = :numero, referencia = :referencia, complemento = :complemento, bairro = :bairro, cidade_id = :cidade_id WHERE id = :id";
+		String sql = "UPDATE clube SET nome = :nome, endereco_id = :endereco_id WHERE id = :id";
 		SqlParameterSource paramSource = new MapSqlParameterSource()
 				.addValue("nome", clube.getNome())
-				.addValue("logradouro", clube.getLogradouro())
-				.addValue("numero", clube.getNumero())
-				.addValue("referencia", clube.getReferencia())
-				.addValue("complemento", clube.getComplemento())
-				.addValue("bairro", clube.getBairro())
-				.addValue("cidade_id", clube.getCidade().getId())
+				.addValue("endereco_id", clube.getEndereco().getId())
 				.addValue("id", clube.getId());
 
 		template.update(sql, paramSource);
@@ -88,7 +84,10 @@ public class ClubeRepository implements BaseRepository<Clube> {
 	
 	public Optional<Clube> clubeExiste(String nome) {
 
-		String sql = "SELECT * FROM clube JOIN cidade ON cidade_id = cidade.id WHERE clube.nome = :nome";
+		String sql = "SELECT *, cidade.nome AS cidade_nome FROM clube"
+				+ " JOIN endereco ON endereco_id = endereco.id"
+				+ " JOIN cidade ON endereco.cidade_id = cidade.id"
+				+ " WHERE clube.nome = :nome";
 		SqlParameterSource paramSource = new MapSqlParameterSource()
 				.addValue("nome", nome);
 

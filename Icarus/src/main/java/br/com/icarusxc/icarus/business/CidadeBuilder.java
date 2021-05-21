@@ -12,7 +12,6 @@ public class CidadeBuilder {
 	public Cidade construirCidade(CidadeDto dto) {
 		Cidade cidade = new Cidade();
 		cidade.setNome(dto.getNome());
-		cidade.setCep(dto.getCep());
 		cidade.setEstado(dto.getEstado());
 		return cidade;
 	}
@@ -20,7 +19,6 @@ public class CidadeBuilder {
 	public Cidade construirCidadeAtualizado(CidadeDto dto) {
 		Cidade cidade = new Cidade();
 		cidade.setNome(dto.getNome());
-		cidade.setCep(dto.getCep());
 		cidade.setEstado(dto.getEstado());
 		return cidade;
 	}

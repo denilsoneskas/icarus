@@ -4,8 +4,6 @@ public class Cidade extends BaseEntity {
 	
 	private String nome;
 	
-	private String cep;
-	
 	private String estado;
 
 	public String getNome() {
@@ -16,14 +14,6 @@ public class Cidade extends BaseEntity {
 		this.nome = nome;
 	}
 	
-	public String getCep() {
-		return cep;
-	}
-	
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-
 	public String getEstado() {
 		return estado;
 	}

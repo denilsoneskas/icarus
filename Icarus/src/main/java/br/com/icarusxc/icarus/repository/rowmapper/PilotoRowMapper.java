@@ -15,15 +15,16 @@ public class PilotoRowMapper implements RowMapper<Piloto> {
 		Piloto piloto = new Piloto();
 		piloto.setId(rs.getLong("id"));
 		piloto.setCodigo(rs.getInt("codigo"));
-		piloto.setNome(rs.getString("nome"));
-		piloto.setDataNascimento(rs.getDate("dataNascimento"));
-		piloto.setLogradouro(rs.getString("logradouro"));
-		piloto.setNumero(rs.getInt("numero"));
-		piloto.setReferencia(rs.getString("referencia"));
-		piloto.setComplemento(rs.getString("complemento"));
-		piloto.setBairro(rs.getString("bairro"));
 		
-		piloto.setCidade(new CidadeRowMapper().mapRow(rs, rowNum));
+		try {
+			piloto.setNome(rs.getString("piloto_nome"));
+		} catch (Exception e) {
+			piloto.setNome(rs.getString("nome"));
+		}
+		
+		piloto.setDataNascimento(rs.getDate("dataNascimento"));
+		
+		piloto.setEndereco(new EnderecoRowMapper().mapRow(rs, rowNum));
 		piloto.setAeronave(new AeronaveRowMapper().mapRow(rs, rowNum));
 		piloto.setClube(new ClubeRowMapper().mapRow(rs, rowNum));
 

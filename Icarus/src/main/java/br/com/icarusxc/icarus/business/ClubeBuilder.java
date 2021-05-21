@@ -10,17 +10,12 @@ import br.com.icarusxc.icarus.entity.Clube;
 public class ClubeBuilder {
 
 	@Autowired
-	private CidadeService cidadeService;
+	private EnderecoService enderecoService;
 
 	public Clube construirClube(ClubeDto dto) {
 		Clube clube = new Clube();
 		clube.setNome(dto.getNome());
-		clube.setLogradouro(dto.getLogradouro());
-		clube.setNumero(dto.getNumero());
-		clube.setReferencia(dto.getReferencia());
-		clube.setComplemento(dto.getComplemento());
-		clube.setBairro(dto.getBairro());
-		cidadeService.ler(dto.getCidade()).ifPresent(clube::setCidade);
+		enderecoService.ler(dto.getEndereco()).ifPresent(clube::setEndereco);
 		
 		return clube;
 	}
@@ -28,12 +23,7 @@ public class ClubeBuilder {
 	public Clube construirClubeAtualizado(ClubeDto dto) {
 		Clube clube = new Clube();
 		clube.setNome(dto.getNome());
-		clube.setLogradouro(dto.getLogradouro());
-		clube.setNumero(dto.getNumero());
-		clube.setReferencia(dto.getReferencia());
-		clube.setComplemento(dto.getComplemento());
-		clube.setBairro(dto.getBairro());
-		cidadeService.ler(dto.getCidade()).ifPresent(clube::setCidade);
+		enderecoService.ler(dto.getEndereco()).ifPresent(clube::setEndereco);
 		
 		return clube;
 	}
