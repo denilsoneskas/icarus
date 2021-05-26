@@ -58,7 +58,7 @@ public class EnderecoController implements BaseController<EnderecoDto, Endereco>
 	public ResponseEntity<Void> atualizar(Long id, EnderecoDto dto) {
 		Optional<Endereco> enderecoStored = service.ler(id);
 		if (enderecoStored.isPresent()) {
-			Endereco endereco = builder.construirEnderecoAtualizado(dto);
+			Endereco endereco = builder.construirEndereco(dto);
 			service.atualizar(id, endereco);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		} else {

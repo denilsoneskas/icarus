@@ -58,7 +58,7 @@ public class PilotoController implements BaseController<PilotoDto, Piloto> {
 	public ResponseEntity<Void> atualizar(Long id, PilotoDto dto) {
 		Optional<Piloto> pilotoStored = service.ler(id);
 		if (pilotoStored.isPresent()) {
-			Piloto piloto = builder.construirPilotoAtualizado(dto);
+			Piloto piloto = builder.construirPiloto(dto);
 			service.atualizar(id, piloto);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		} else {

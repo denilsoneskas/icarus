@@ -60,7 +60,7 @@ public class CidadeController implements BaseController<CidadeDto, Cidade> {
 	public ResponseEntity<Void> atualizar(Long id, CidadeDto dto) {
 		Optional<Cidade> cidadeStored = service.ler(id);
 		if (cidadeStored.isPresent()) {
-			Cidade cidade = builder.construirCidadeAtualizado(dto);
+			Cidade cidade = builder.construirCidade(dto);
 			service.atualizar(id, cidade);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		} else {

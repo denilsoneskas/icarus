@@ -13,7 +13,11 @@ public class EnderecoRowMapper implements RowMapper<Endereco> {
 	public Endereco mapRow(ResultSet rs, int rowNum) throws SQLException {
 		
 		Endereco endereco = new Endereco();
-		endereco.setId(rs.getLong("id"));
+		try {
+			endereco.setId(rs.getLong("endereco_id"));
+		} catch (Exception e) {
+			endereco.setId(rs.getLong("id"));
+		}
 		endereco.setLogradouro(rs.getString("logradouro"));
 		endereco.setNumero(rs.getInt("numero"));
 		endereco.setReferencia(rs.getString("referencia"));

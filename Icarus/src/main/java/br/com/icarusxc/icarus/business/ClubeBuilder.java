@@ -20,12 +20,4 @@ public class ClubeBuilder {
 		return clube;
 	}
 
-	public Clube construirClubeAtualizado(ClubeDto dto) {
-		Clube clube = new Clube();
-		clube.setNome(dto.getNome());
-		enderecoService.ler(dto.getEndereco()).ifPresent(clube::setEndereco);
-		
-		return clube;
-	}
-
 }

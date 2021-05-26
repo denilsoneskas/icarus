@@ -25,14 +25,4 @@ public class EtapaBuilder {
 		return etapa;
 	}
 
-	public Etapa construirEtapaAtualizado(EtapaDto dto) {
-		Etapa etapa = new Etapa();
-		provaService.ler(dto.getProva()).ifPresent(etapa::setProva);
-		pilotoService.ler(dto.getPiloto()).ifPresent(etapa::setPiloto);
-		etapa.setDecolagem(dto.getDecolagem());
-		etapa.setPouso(dto.getPouso());
-		etapa.setDistanciaMosca(dto.getDistanciaMosca());
-		return etapa;
-	}
-
 }

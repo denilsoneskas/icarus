@@ -58,7 +58,7 @@ public class ClubeController implements BaseController<ClubeDto, Clube> {
 	public ResponseEntity<Void> atualizar(Long id, ClubeDto dto) {
 		Optional<Clube> clubeStored = service.ler(id);
 		if (clubeStored.isPresent()) {
-			Clube clube = builder.construirClubeAtualizado(dto);
+			Clube clube = builder.construirClube(dto);
 			service.atualizar(id, clube);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		} else {

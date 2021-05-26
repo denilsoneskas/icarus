@@ -58,7 +58,7 @@ public class ProvaController implements BaseController<ProvaDto, Prova> {
 	public ResponseEntity<Void> atualizar(Long id, ProvaDto dto) {
 		Optional<Prova> provaStored = service.ler(id);
 		if (provaStored.isPresent()) {
-			Prova prova = builder.construirProvaAtualizado(dto);
+			Prova prova = builder.construirProva(dto);
 			service.atualizar(id, prova);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		} else {

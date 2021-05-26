@@ -58,7 +58,7 @@ public class AeronaveController implements BaseController<AeronaveDto, Aeronave>
 	public ResponseEntity<Void> atualizar(Long id, AeronaveDto dto) {
 		Optional<Aeronave> aeronaveStored = service.ler(id);
 		if (aeronaveStored.isPresent()) {
-			Aeronave aeronave = builder.construirAeronaveAtualizado(dto);
+			Aeronave aeronave = builder.construirAeronave(dto);
 			service.atualizar(id, aeronave);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		} else {

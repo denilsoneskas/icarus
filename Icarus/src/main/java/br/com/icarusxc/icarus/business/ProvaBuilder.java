@@ -15,11 +15,4 @@ public class ProvaBuilder {
 		return prova;
 	}
 
-	public Prova construirProvaAtualizado(ProvaDto dto) {
-		Prova prova = new Prova();
-		prova.setNome(dto.getNome());
-		prova.setDataProva(dto.getDataProva());
-		return prova;
-	}
-
 }

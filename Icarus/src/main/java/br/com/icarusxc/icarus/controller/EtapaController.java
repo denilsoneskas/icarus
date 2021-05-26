@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,16 +29,6 @@ public class EtapaController implements BaseController<EtapaDto, Etapa> {
 
 	@Override
 	public ResponseEntity<Etapa> criar(EtapaDto dto) {
-		
-//		if (dto.getNome() !=null && dto.getNome() != "") {
-//			Optional<Etapa> etapaExiste = service.etapaExiste(dto.getNome());
-//			if (!etapaExiste.isPresent()) {
-//				Etapa etapa = service.criar(builder.construirEtapa(dto));
-//				return new ResponseEntity<Etapa>(etapa, HttpStatus.CREATED);
-//			}
-//		}
-//		return new ResponseEntity<Etapa>(HttpStatus.OK);
-
 		Etapa etapa = service.criar(builder.construirEtapa(dto));
 		return new ResponseEntity<Etapa>(etapa, HttpStatus.CREATED);
 	}
@@ -60,13 +52,12 @@ public class EtapaController implements BaseController<EtapaDto, Etapa> {
 	public ResponseEntity<Void> atualizar(Long id, EtapaDto dto) {
 		Optional<Etapa> etapaStored = service.ler(id);
 		if (etapaStored.isPresent()) {
-			Etapa etapa = builder.construirEtapaAtualizado(dto);
+			Etapa etapa = builder.construirEtapa(dto);
 			service.atualizar(id, etapa);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		} else {
 			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 		}
-
 	}
 
 	@Override
@@ -78,7 +69,32 @@ public class EtapaController implements BaseController<EtapaDto, Etapa> {
 		} else {
 			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 		}
-
+	}
+	
+	@PutMapping("/{id}/decolar")
+	public ResponseEntity<Void> decolar(@PathVariable Long id){
+		Optional<Etapa> etapaStored = service.ler(id);
+		if (etapaStored.isPresent()) {
+			Etapa etapa = etapaStored.get();
+			etapa.decolar();
+			service.atualizar(id, etapa);
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+		}
 	}
 
+	@PutMapping("/{id}/pousar")
+	public ResponseEntity<Void> pousar(@PathVariable Long id){
+		Optional<Etapa> etapaStored = service.ler(id);
+		if (etapaStored.isPresent()) {
+			Etapa etapa = etapaStored.get();
+			etapa.pousar();
+			service.atualizar(id, etapa);
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
 }

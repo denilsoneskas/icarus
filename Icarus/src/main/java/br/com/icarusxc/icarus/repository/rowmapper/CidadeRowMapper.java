@@ -13,11 +13,12 @@ public class CidadeRowMapper implements RowMapper<Cidade> {
 	public Cidade mapRow(ResultSet rs, int rowNum) throws SQLException {
 
 		Cidade cidade = new Cidade();
-		cidade.setId(rs.getLong("id"));
 		
 		try {
+			cidade.setId(rs.getLong("cidade_id"));
 			cidade.setNome(rs.getString("cidade_nome"));
 		} catch (Exception e) {
+			cidade.setId(rs.getLong("id"));
 			cidade.setNome(rs.getString("nome"));
 		}
 		

@@ -13,12 +13,14 @@ public class PilotoRowMapper implements RowMapper<Piloto> {
 	public Piloto mapRow(ResultSet rs, int rowNum) throws SQLException {
 		
 		Piloto piloto = new Piloto();
-		piloto.setId(rs.getLong("id"));
+		
 		piloto.setCodigo(rs.getInt("codigo"));
 		
 		try {
+			piloto.setId(rs.getLong("piloto_id"));
 			piloto.setNome(rs.getString("piloto_nome"));
 		} catch (Exception e) {
+			piloto.setId(rs.getLong("id"));
 			piloto.setNome(rs.getString("nome"));
 		}
 		

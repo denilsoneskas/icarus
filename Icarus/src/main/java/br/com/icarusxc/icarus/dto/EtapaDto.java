@@ -1,6 +1,6 @@
 package br.com.icarusxc.icarus.dto;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 public class EtapaDto extends BaseDto {
 	
@@ -8,9 +8,9 @@ public class EtapaDto extends BaseDto {
 
 	private Long piloto;
 	
-	private Date decolagem;
+	private LocalDateTime decolagem;
 	
-	private Date pouso;
+	private LocalDateTime pouso;
 	
 	private double distanciaMosca;
 
@@ -30,19 +30,19 @@ public class EtapaDto extends BaseDto {
 		this.piloto = piloto;
 	}
 
-	public Date getDecolagem() {
+	public LocalDateTime getDecolagem() {
 		return decolagem;
 	}
 
-	public void setDecolagem(Date decolagem) {
+	public void setDecolagem(LocalDateTime decolagem) {
 		this.decolagem = decolagem;
 	}
 
-	public Date getPouso() {
+	public LocalDateTime getPouso() {
 		return pouso;
 	}
 
-	public void setPouso(Date pouso) {
+	public void setPouso(LocalDateTime pouso) {
 		this.pouso = pouso;
 	}
 

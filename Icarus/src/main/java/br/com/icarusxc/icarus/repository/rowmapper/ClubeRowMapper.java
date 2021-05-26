@@ -13,11 +13,12 @@ public class ClubeRowMapper implements RowMapper<Clube> {
 	public Clube mapRow(ResultSet rs, int rowNum) throws SQLException {
 
 		Clube clube = new Clube();
-		clube.setId(rs.getLong("id"));
 
 		try {
+			clube.setId(rs.getLong("clube_id"));
 			clube.setNome(rs.getString("clube_nome"));
 		} catch (Exception e) {
+			clube.setId(rs.getLong("id"));
 			clube.setNome(rs.getString("nome"));
 		}
 		

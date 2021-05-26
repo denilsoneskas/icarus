@@ -27,12 +27,4 @@ public class AeronaveBuilder {
 		return aeronave;
 	}
 
-	public Aeronave construirAeronaveAtualizado(AeronaveDto dto) {
-		Aeronave aeronave = new Aeronave();
-		fabricanteService.ler(dto.getFabricante()).ifPresent(aeronave::setFabricante);
-		aeronave.setModelo(dto.getModelo());
-		aeronave.setCertificacao(dto.getCertificacao());
-		return aeronave;
-	}
-
 }

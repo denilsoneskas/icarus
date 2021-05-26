@@ -40,7 +40,11 @@ public class EtapaRepository implements BaseRepository<Etapa> {
 	@Override
 	public Optional<Etapa> ler(Long id) {
 
-		String sql = "SELECT * FROM etapa"
+		String sql = "SELECT *, "
+				+ "prova.id AS prova_id, prova.nome AS prova_nome,"
+				+ "piloto.id AS piloto_id, piloto.nome AS piloto_nome,"
+				+ "fabricante.id AS fabricante_id, fabricante.nome AS fabricante_nome "
+				+ "FROM etapa"
 				+ " JOIN prova ON prova_id = prova.id"
 				+ " JOIN piloto ON piloto_id = piloto.id"
 				+ " JOIN endereco ON endereco_id = endereco.id"
@@ -61,7 +65,11 @@ public class EtapaRepository implements BaseRepository<Etapa> {
 	@Override
 	public List<Etapa> lerTudo() {
 
-		String sql = "SELECT * FROM etapa"
+		String sql = "SELECT *, "
+				+ "prova.id AS prova_id, "
+				+ "piloto.id AS piloto_id, piloto.nome AS piloto_nome,"
+				+ "fabricante.id AS fabricante_id, fabricante.nome AS fabricante_nome "
+				+ " FROM etapa"
 				+ " JOIN prova ON prova_id = prova.id"
 				+ " JOIN piloto ON piloto_id = piloto.id"
 				+ " JOIN endereco ON endereco_id = endereco.id"
@@ -76,9 +84,9 @@ public class EtapaRepository implements BaseRepository<Etapa> {
 	@Override
 	public void atualizar(Etapa etapa) {
 
-		String sql = "UPDATE etapa SET prova = :prova_id, piloto_id = :piloto_id, decolagem = :decolagem, pouso = :pouso, distanciaMosca = :distanciaMosca WHERE id = :id";
+		String sql = "UPDATE etapa SET prova_id = :prova_id, piloto_id = :piloto_id, decolagem = :decolagem, pouso = :pouso, distanciaMosca = :distanciaMosca WHERE id = :id";
 		SqlParameterSource paramSource = new MapSqlParameterSource()
-				.addValue("nome", etapa.getProva().getId())
+				.addValue("prova_id", etapa.getProva().getId())
 				.addValue("piloto_id", etapa.getPiloto().getId())
 				.addValue("decolagem", etapa.getDecolagem())
 				.addValue("pouso", etapa.getPouso())
@@ -99,7 +107,11 @@ public class EtapaRepository implements BaseRepository<Etapa> {
 	
 	public Optional<Etapa> etapaExiste(String nome) {
 
-		String sql = "SELECT * FROM etapa"
+		String sql = "SELECT *,"
+				+ "prova.id AS prova_id, "
+				+ "piloto.id AS piloto_id, piloto.nome AS piloto_nome,"
+				+ "fabricante.id AS fabricante_id, fabricante.nome AS fabricante_nome "
+				+ "FROM etapa"
 				+ " JOIN prova ON prova_id = prova.id"
 				+ " JOIN piloto ON piloto_id = piloto.id"
 				+ " JOIN endereco ON endereco_id = endereco.id"

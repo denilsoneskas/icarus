@@ -13,11 +13,12 @@ public class ProvaRowMapper implements RowMapper<Prova> {
 	public Prova mapRow(ResultSet rs, int rowNum) throws SQLException {
 
 		Prova prova = new Prova();
-		prova.setId(rs.getLong("id"));
 		
 		try {
+			prova.setId(rs.getLong("prova_id"));
 			prova.setNome(rs.getString("prova_nome"));
 		} catch (Exception e) {
+			prova.setId(rs.getLong("id"));
 			prova.setNome(rs.getString("nome"));
 		}
 		

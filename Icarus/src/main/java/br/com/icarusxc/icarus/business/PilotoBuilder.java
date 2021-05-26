@@ -20,6 +20,7 @@ public class PilotoBuilder {
 
 	public Piloto construirPiloto(PilotoDto dto) {
 		Piloto piloto = new Piloto();
+		piloto.setCodigo(dto.getCodigo());
 		piloto.setNome(dto.getNome());
 		piloto.setDataNascimento(dto.getDataNascimento());
 
@@ -27,18 +28,6 @@ public class PilotoBuilder {
 		aeronaveService.ler(dto.getAeronave()).ifPresent(piloto::setAeronave);
 		clubeService.ler(dto.getClube()).ifPresent(piloto::setClube);
 
-		return piloto;
-	}
-
-	public Piloto construirPilotoAtualizado(PilotoDto dto) {
-		Piloto piloto = new Piloto();
-		piloto.setNome(dto.getNome());
-		piloto.setDataNascimento(dto.getDataNascimento());
-		
-		enderecoService.ler(dto.getEndereco()).ifPresent(piloto::setEndereco);
-		aeronaveService.ler(dto.getAeronave()).ifPresent(piloto::setAeronave);
-		clubeService.ler(dto.getClube()).ifPresent(piloto::setClube);
-		
 		return piloto;
 	}
 

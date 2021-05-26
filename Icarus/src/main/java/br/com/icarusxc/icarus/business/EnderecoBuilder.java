@@ -27,19 +27,4 @@ public class EnderecoBuilder {
 		return endereco;
 	}
 
-	public Endereco construirEnderecoAtualizado(EnderecoDto dto) {
-		Endereco endereco = new Endereco();
-		endereco.setLogradouro(dto.getLogradouro());
-		endereco.setNumero(dto.getNumero());
-		endereco.setReferencia(dto.getReferencia());
-		endereco.setComplemento(dto.getComplemento());
-		endereco.setBairro(dto.getBairro());
-
-		cidadeService.ler(dto.getCidade()).ifPresent(endereco::setCidade);
-		
-		endereco.setCep(dto.getCep());
-		
-		return endereco;
-	}
-
 }

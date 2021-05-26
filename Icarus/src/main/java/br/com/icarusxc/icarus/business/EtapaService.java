@@ -47,5 +47,5 @@ public class EtapaService implements BaseService<Etapa> {
 		Optional<Etapa> etapaExite = repository.etapaExiste(nome);
 		return etapaExite;
 	}
-
+	
 }

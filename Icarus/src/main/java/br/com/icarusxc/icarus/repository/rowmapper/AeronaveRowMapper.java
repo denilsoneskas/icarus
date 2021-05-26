@@ -13,7 +13,12 @@ public class AeronaveRowMapper implements RowMapper<Aeronave> {
 	public Aeronave mapRow(ResultSet rs, int rowNum) throws SQLException {
 
 		Aeronave aeronave = new Aeronave();
-		aeronave.setId(rs.getLong("id"));
+		
+		try {
+			aeronave.setId(rs.getLong("aeronave_id"));
+		} catch (Exception e) {
+			aeronave.setId(rs.getLong("id"));
+		}
 		
 		aeronave.setFabricante(new FabricanteRowMapper().mapRow(rs, rowNum));
 		

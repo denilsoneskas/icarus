@@ -1,6 +1,7 @@
 package br.com.icarusxc.icarus.entity;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Etapa extends BaseEntity {
 
@@ -8,9 +9,11 @@ public class Etapa extends BaseEntity {
 	
 	private Piloto piloto;
 	
-	private Date decolagem;
+	private LocalDateTime decolagem;
 	
-	private Date pouso;
+	private LocalDateTime pouso;
+	
+	private LocalTime permanencia;
 	
 	private double distanciaMosca;
 
@@ -30,19 +33,19 @@ public class Etapa extends BaseEntity {
 		this.piloto = piloto;
 	}
 
-	public Date getDecolagem() {
+	public LocalDateTime getDecolagem() {
 		return decolagem;
 	}
 
-	public void setDecolagem(Date decolagem) {
+	public void setDecolagem(LocalDateTime decolagem) {
 		this.decolagem = decolagem;
 	}
 
-	public Date getPouso() {
+	public LocalDateTime getPouso() {
 		return pouso;
 	}
 
-	public void setPouso(Date pouso) {
+	public void setPouso(LocalDateTime pouso) {
 		this.pouso = pouso;
 	}
 
@@ -54,4 +57,20 @@ public class Etapa extends BaseEntity {
 		this.distanciaMosca = distanciaMosca;
 	}
 
+	public void decolar() {
+		this.setDecolagem(LocalDateTime.now());		
+	}
+	
+	public void pousar() {
+		this.setPouso(LocalDateTime.now());		
+	}
+
+	public LocalTime getPermanencia() {
+		return permanencia;
+	}
+
+	public void setPermanencia(LocalTime permanencia) {
+		this.permanencia = permanencia;
+	}
+	
 }

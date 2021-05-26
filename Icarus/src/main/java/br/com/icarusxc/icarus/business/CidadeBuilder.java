@@ -16,11 +16,4 @@ public class CidadeBuilder {
 		return cidade;
 	}
 
-	public Cidade construirCidadeAtualizado(CidadeDto dto) {
-		Cidade cidade = new Cidade();
-		cidade.setNome(dto.getNome());
-		cidade.setEstado(dto.getEstado());
-		return cidade;
-	}
-
 }

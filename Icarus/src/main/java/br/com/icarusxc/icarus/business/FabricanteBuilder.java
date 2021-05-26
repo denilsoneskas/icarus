@@ -15,10 +15,4 @@ public class FabricanteBuilder {
 		return fabricante;
 	}
 
-	public Fabricante construirFabricanteAtualizado(FabricanteDto dto) {
-		Fabricante fabricante = new Fabricante();
-		fabricante.setNome(dto.getNome());
-		return fabricante;
-	}
-
 }

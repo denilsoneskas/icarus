@@ -60,7 +60,7 @@ public class FabricanteController implements BaseController<FabricanteDto, Fabri
 	public ResponseEntity<Void> atualizar(Long id, FabricanteDto dto) {
 		Optional<Fabricante> fabricanteStored = service.ler(id);
 		if (fabricanteStored.isPresent()) {
-			Fabricante fabricante = builder.construirFabricanteAtualizado(dto);
+			Fabricante fabricante = builder.construirFabricante(dto);
 			service.atualizar(id, fabricante);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		} else {
