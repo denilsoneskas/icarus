@@ -43,7 +43,9 @@ public class EnderecoRepository implements BaseRepository<Endereco> {
 	@Override
 	public Optional<Endereco> ler(Long id) {
 
-		String sql = "SELECT * FROM endereco "
+		String sql = "SELECT *,"
+				+ " cidade.id AS cidade_id "
+				+ " FROM endereco "
 				+ " JOIN cidade ON cidade_id = cidade.id"
 				+ " WHERE endereco.id = :id";
 		SqlParameterSource paramSource = new MapSqlParameterSource()
@@ -59,7 +61,9 @@ public class EnderecoRepository implements BaseRepository<Endereco> {
 	@Override
 	public List<Endereco> lerTudo() {
 
-		String sql = "SELECT * FROM endereco "
+		String sql = "SELECT *,"
+				+ " cidade.id AS cidade_id "
+				+ " FROM endereco "
 				+ " JOIN cidade ON cidade_id = cidade.id"
 				+ " ORDER BY endereco.id";
 
@@ -94,7 +98,9 @@ public class EnderecoRepository implements BaseRepository<Endereco> {
 	
 	public Optional<Endereco> enderecoExiste(String logradouro) {
 
-		String sql = "SELECT * FROM endereco "
+		String sql = "SELECT *,"
+				+ " cidade.id AS cidade_id "
+				+ " FROM endereco "
 				+ " JOIN cidade ON cidade_id = cidade.id"
 				+ " WHERE endereco.logradouro = :logradouro";
 		SqlParameterSource paramSource = new MapSqlParameterSource()

@@ -36,7 +36,10 @@ public class ClubeRepository implements BaseRepository<Clube> {
 	@Override
 	public Optional<Clube> ler(Long id) {
 
-		String sql = "SELECT *, cidade.nome AS cidade_nome FROM clube"
+		String sql = "SELECT *,"
+				+ " cidade.id AS cidade_id, cidade.nome AS cidade_nome,"
+				+ " endereco.id AS endereco_id"
+				+ " FROM clube"
 				+ " JOIN endereco ON endereco_id = endereco.id"
 				+ " JOIN cidade ON endereco.cidade_id = cidade.id"
 				+ " WHERE clube.id = :id";
@@ -53,7 +56,10 @@ public class ClubeRepository implements BaseRepository<Clube> {
 	@Override
 	public List<Clube> lerTudo() {
 
-		String sql = "SELECT *, cidade.nome AS cidade_nome FROM clube"
+		String sql = "SELECT *,"
+				+ " cidade.id AS cidade_id, cidade.nome AS cidade_nome,"
+				+ " endereco.id AS endereco_id"
+				+ " FROM clube"
 				+ " JOIN endereco ON endereco_id = endereco.id"
 				+ " JOIN cidade ON endereco.cidade_id = cidade.id"
 				+ " ORDER BY clube.id";
@@ -84,7 +90,10 @@ public class ClubeRepository implements BaseRepository<Clube> {
 	
 	public Optional<Clube> clubeExiste(String nome) {
 
-		String sql = "SELECT *, cidade.nome AS cidade_nome FROM clube"
+		String sql = "SELECT *,"
+				+ " cidade.id AS cidade_id, cidade.nome AS cidade_nome,"
+				+ " endereco.id AS endereco_id"
+				+ " FROM clube"
 				+ " JOIN endereco ON endereco_id = endereco.id"
 				+ " JOIN cidade ON endereco.cidade_id = cidade.id"
 				+ " WHERE clube.nome = :nome";

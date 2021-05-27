@@ -42,7 +42,12 @@ public class PilotoRepository implements BaseRepository<Piloto> {
 	@Override
 	public Optional<Piloto> ler(Long id) {
 
-		String sql = "SELECT *, cidade.nome AS cidade_nome, clube.nome AS clube_nome FROM piloto "
+		String sql = "SELECT *,"
+				+ " endereco.id AS endereco_id,"
+				+ " cidade.id AS cidade_id, cidade.nome AS cidade_nome,"
+				+ " aeronave.id AS aeronave_id,"
+				+ " clube.id AS clube_id, clube.nome AS clube_nome"
+				+ " FROM piloto "
 				+ " JOIN endereco ON endereco_id = endereco.id"
 				+ " JOIN cidade ON endereco.cidade_id = cidade.id"
 				+ " JOIN aeronave ON aeronave_id = aeronave.id"
@@ -61,7 +66,12 @@ public class PilotoRepository implements BaseRepository<Piloto> {
 	@Override
 	public List<Piloto> lerTudo() {
 
-		String sql = "SELECT *, cidade.nome AS cidade_nome, clube.nome AS clube_nome FROM piloto "
+		String sql = "SELECT *,"
+				+ " endereco.id AS endereco_id,"
+				+ " cidade.id AS cidade_id, cidade.nome AS cidade_nome,"
+				+ " aeronave.id AS aeronave_id,"
+				+ " clube.id AS clube_id, clube.nome AS clube_nome"
+				+ " FROM piloto "
 				+ " JOIN endereco ON endereco_id = endereco.id"
 				+ " JOIN cidade ON endereco.cidade_id = cidade.id"
 				+ " JOIN aeronave ON aeronave_id = aeronave.id"
@@ -98,7 +108,12 @@ public class PilotoRepository implements BaseRepository<Piloto> {
 	
 	public Optional<Piloto> pilotoExiste(String nome) {
 
-		String sql = "SELECT *, cidade.nome AS cidade_nome, clube.nome AS clube_nome FROM piloto "
+		String sql = "SELECT *,"
+				+ " endereco.id AS endereco_id,"
+				+ " cidade.id AS cidade_id, cidade.nome AS cidade_nome,"
+				+ " aeronave.id AS aeronave_id,"
+				+ " clube.id AS clube_id, clube.nome AS clube_nome"
+				+ " FROM piloto "
 				+ " JOIN endereco ON endereco_id = endereco.id"
 				+ " JOIN cidade ON endereco.cidade_id = cidade.id"
 				+ " JOIN aeronave ON aeronave_id = aeronave.id"

@@ -38,7 +38,11 @@ public class AeronaveRepository implements BaseRepository<Aeronave> {
 	@Override
 	public Optional<Aeronave> ler(Long id) {
 
-		String sql = "SELECT * FROM aeronave JOIN fabricante ON fabricante_id = fabricante.id WHERE aeronave.id = :id";
+		String sql = "SELECT *,"
+				+ " fabricante.id AS fabricante_id "
+				+ " FROM aeronave"
+				+ " JOIN fabricante ON fabricante_id = fabricante.id"
+				+ " WHERE aeronave.id = :id";
 		SqlParameterSource paramSource = new MapSqlParameterSource()
 				.addValue("id", id);
 
@@ -52,7 +56,11 @@ public class AeronaveRepository implements BaseRepository<Aeronave> {
 	@Override
 	public List<Aeronave> lerTudo() {
 
-		String sql = "SELECT * FROM aeronave JOIN fabricante ON fabricante_id = fabricante.id ORDER BY aeronave.id";
+		String sql = "SELECT *,"
+				+ " fabricante.id AS fabricante_id "
+				+ " FROM aeronave"
+				+ " JOIN fabricante ON fabricante_id = fabricante.id"
+				+ " ORDER BY aeronave.id";
 
 		return template.query(sql, new AeronaveRowMapper());
 	}
@@ -81,7 +89,11 @@ public class AeronaveRepository implements BaseRepository<Aeronave> {
 	
 	public Optional<Aeronave> aeronaveExiste(String modelo) {
 
-		String sql = "SELECT * FROM aeronave JOIN fabricante ON fabricante_id = fabricante.id WHERE modelo = :modelo";
+		String sql = "SELECT *,"
+				+ " fabricante.id AS fabricante_id "
+				+ " FROM aeronave"
+				+ " JOIN fabricante ON fabricante_id = fabricante.id"
+				+ " WHERE modelo = :modelo";
 		SqlParameterSource paramSource = new MapSqlParameterSource()
 				.addValue("modelo", modelo);
 

@@ -10,6 +10,6 @@ CREATE TABLE  IF NOT EXISTS endereco
 	cidade_id integer NOT NULL,
 	FOREIGN KEY (cidade_id) 
 		REFERENCES cidade(id)	 
-		ON UPDATE SET NULL 
-		ON DELETE SET NULL
+		ON UPDATE CASCADE 
+		ON DELETE CASCADE
 );

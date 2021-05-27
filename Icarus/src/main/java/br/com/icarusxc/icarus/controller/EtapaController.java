@@ -3,8 +3,10 @@ package br.com.icarusxc.icarus.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.icarusxc.icarus.business.EtapaBuilder;
 import br.com.icarusxc.icarus.business.EtapaService;
 import br.com.icarusxc.icarus.dto.EtapaDto;
+import br.com.icarusxc.icarus.entity.Apuracao;
 import br.com.icarusxc.icarus.entity.Etapa;
+import br.com.icarusxc.icarus.repository.ApuracaoRepository;
 
 @RestController
 @RequestMapping("/etapas")
@@ -21,6 +25,9 @@ public class EtapaController implements BaseController<EtapaDto, Etapa> {
 
 	private EtapaService service;
 	private EtapaBuilder builder;
+	
+	@Autowired
+	private ApuracaoRepository apuracaoRepository; 
 
 	public EtapaController(EtapaService service, EtapaBuilder builder) {
 		this.service = service;
@@ -95,6 +102,16 @@ public class EtapaController implements BaseController<EtapaDto, Etapa> {
 		} else {
 			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	@GetMapping("/{id}/permanencia")
+	public List<Apuracao> apurarPermanencia(@PathVariable Long id) {
+		return apuracaoRepository.apurarPermanencia(id);
+	}
+	
+	@GetMapping("/{id}/distanciamosca")
+	public List<Apuracao> apurarDistanciaMosca(@PathVariable Long id) {
+		return apuracaoRepository.apurarDistanciaMosca(id);
 	}
 	
 }
