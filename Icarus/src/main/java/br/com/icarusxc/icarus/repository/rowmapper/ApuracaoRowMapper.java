@@ -14,7 +14,7 @@ public class ApuracaoRowMapper implements RowMapper<Apuracao> {
 
 		Apuracao apuracaoDto = new Apuracao();
 		
-		apuracaoDto.setPilotoNnome(rs.getString("nome"));
+		apuracaoDto.setPilotoNome(rs.getString("nome"));
 		apuracaoDto.setAeronaveModelo(rs.getString("modelo"));
 		apuracaoDto.setFabricanteNome(rs.getString("fabricante_nome"));
 		apuracaoDto.setClubeNome(rs.getString("clube_nome"));

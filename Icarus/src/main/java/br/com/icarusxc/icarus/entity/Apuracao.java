@@ -7,7 +7,7 @@ import br.com.icarusxc.icarus.dto.BaseDto;
 
 public class Apuracao extends BaseDto {
 		
-	private String pilotoNnome;
+	private String pilotoNome;
 	
 	private String aeronaveModelo;
 	
@@ -23,12 +23,12 @@ public class Apuracao extends BaseDto {
 	
 	private double distanciaMosca;
 
-	public String getPilotoNnome() {
-		return pilotoNnome;
+	public String getPilotoNome() {
+		return pilotoNome;
 	}
 
-	public void setPilotoNnome(String pilotoNnome) {
-		this.pilotoNnome = pilotoNnome;
+	public void setPilotoNome(String pilotoNome) {
+		this.pilotoNome = pilotoNome;
 	}
 
 	public String getAeronaveModelo() {

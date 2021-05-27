@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -97,6 +99,19 @@ public class EtapaController implements BaseController<EtapaDto, Etapa> {
 		if (etapaStored.isPresent()) {
 			Etapa etapa = etapaStored.get();
 			etapa.pousar();
+			service.atualizar(id, etapa);
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@PatchMapping("/{id}")
+	public ResponseEntity<Void> lancarDistanciaMosca(@PathVariable Long id, @RequestBody EtapaDto dto){
+		Optional<Etapa> etapaStored = service.ler(id);
+		if (etapaStored.isPresent()) {
+			Etapa etapa = etapaStored.get();
+			etapa.lancarDistanciaMosca(dto.getDistanciaMosca());
 			service.atualizar(id, etapa);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		} else {

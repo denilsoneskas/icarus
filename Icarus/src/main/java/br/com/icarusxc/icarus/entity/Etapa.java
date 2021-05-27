@@ -57,14 +57,6 @@ public class Etapa extends BaseEntity {
 		this.distanciaMosca = distanciaMosca;
 	}
 
-	public void decolar() {
-		this.setDecolagem(LocalDateTime.now());		
-	}
-	
-	public void pousar() {
-		this.setPouso(LocalDateTime.now());		
-	}
-
 	public LocalTime getPermanencia() {
 		return permanencia;
 	}
@@ -73,4 +65,15 @@ public class Etapa extends BaseEntity {
 		this.permanencia = permanencia;
 	}
 	
+	public void decolar() {
+		this.setDecolagem(LocalDateTime.now());		
+	}
+	
+	public void pousar() {
+		this.setPouso(LocalDateTime.now());		
+	}
+	
+	public void lancarDistanciaMosca(Double distanciaMosca) {
+		this.setDistanciaMosca(distanciaMosca);
+	}
 }
