@@ -4,4 +4,4 @@ CREATE VIEW apuracao_distanciamosca_view AS
 	JOIN clube ON clube_id = clube.id
 	JOIN aeronave ON piloto.aeronave_id = aeronave.id
 	JOIN fabricante ON aeronave.fabricante_id = fabricante.id
-	ORDER BY distanciamosca DESC
+	ORDER BY distanciamosca DESC, permanencia DESC
